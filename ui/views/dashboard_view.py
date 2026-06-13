@@ -85,7 +85,8 @@ class DashboardView(QWidget):
     def showEvent(self, event):
         """Refresh data when view becomes visible"""
         super().showEvent(event)
-        self.load_data()
+        from PyQt5.QtCore import QTimer
+        QTimer.singleShot(10, self.load_data)
 
     def load_data(self):
         try:

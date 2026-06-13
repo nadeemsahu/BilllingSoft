@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel,
                              QHeaderView, QLineEdit, QDialog, QFormLayout,
                              QComboBox, QMessageBox, QDoubleSpinBox, QTextEdit, QFrame)
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QColor
+from PyQt5.QtGui import QColor, QFont
 from models.repair import RepairModel
 from models.customer import CustomerModel
 from utils.helpers import format_currency, format_date
@@ -295,3 +295,8 @@ class RepairsView(QWidget):
         dialog = StatusDialog(self, repair)
         if dialog.exec_():
             self.load_data()
+
+    def showEvent(self, event):
+        super().showEvent(event)
+        from PyQt5.QtCore import QTimer
+        QTimer.singleShot(10, self.load_data)

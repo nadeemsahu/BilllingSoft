@@ -84,7 +84,12 @@ class SalesView(QWidget):
         self.sales_table.setAlternatingRowColors(True)
         self.sales_table.setColumnCount(4)
         self.sales_table.setHorizontalHeaderLabels(["ID", "Date", "Customer", "Total"])
+        self.sales_table.itemDoubleClicked.connect(self.open_receipt)
         recent_sales_layout.addWidget(self.sales_table)
+
+        open_folder_btn = QPushButton("Open Receipts Folder")
+        open_folder_btn.clicked.connect(self.open_receipts_folder)
+        recent_sales_layout.addWidget(open_folder_btn)
 
         main_layout.addLayout(recent_sales_layout, stretch=1)
         
@@ -160,8 +165,13 @@ class SalesView(QWidget):
         if sale_id:
             try:
                 # Generate PDF
-                import os
-                invoice_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "invoices")
+                import sys, os
+                if getattr(sys, 'frozen', False):
+                    base_dir = os.path.dirname(sys.executable)
+                else:
+                    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+                invoice_dir = os.path.join(base_dir, "invoices")
+                
                 if not os.path.exists(invoice_dir):
                     os.makedirs(invoice_dir)
                 pdf_path = os.path.join(invoice_dir, f"Invoice_{sale_id}.pdf")
@@ -188,3 +198,49 @@ class SalesView(QWidget):
             self.sales_table.setItem(row, 1, QTableWidgetItem(format_date(sale['date'])))
             self.sales_table.setItem(row, 2, QTableWidgetItem(sale.get('customer_name', 'Guest') or 'Guest'))
             self.sales_table.setItem(row, 3, QTableWidgetItem(format_currency(sale['total_amount'])))
+
+    def showEvent(self, event):
+        super().showEvent(event)
+        from PyQt5.QtCore import QTimer
+        QTimer.singleShot(10, self._deferred_load)
+
+    def _deferred_load(self):
+        self.load_customers()
+        self.load_products()
+        self.load_recent_sales()
+
+    def open_receipts_folder(self):
+        import sys, os
+        if getattr(sys, 'frozen', False):
+            base_dir = os.path.dirname(sys.executable)
+        else:
+            base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        invoice_dir = os.path.join(base_dir, "invoices")
+        
+        if not os.path.exists(invoice_dir):
+            os.makedirs(invoice_dir)
+        try:
+            os.startfile(invoice_dir)
+        except Exception as e:
+            QMessageBox.warning(self, "Error", f"Could not open folder: {e}")
+
+    def open_receipt(self, item):
+        import sys, os
+        row = item.row()
+        sale_id = self.sales_table.item(row, 0).text()
+        
+        if getattr(sys, 'frozen', False):
+            base_dir = os.path.dirname(sys.executable)
+        else:
+            base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        invoice_dir = os.path.join(base_dir, "invoices")
+        
+        pdf_path = os.path.join(invoice_dir, f"Invoice_{sale_id}.pdf")
+        if os.path.exists(pdf_path):
+            try:
+                os.startfile(pdf_path)
+            except Exception as e:
+                QMessageBox.warning(self, "Error", f"Could not open PDF: {e}")
+        else:
+            QMessageBox.information(self, "Not Found", f"Receipt for sale {sale_id} not found.")
+

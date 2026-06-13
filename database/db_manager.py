@@ -5,10 +5,14 @@ from typing import List, Dict, Any, Tuple, Optional
 
 class DatabaseManager:
     _instance = None
+    db_path: str = ""
 
-    def __new__(cls, db_path='shop_data.db'):
+    def __new__(cls, db_path=None):
         if cls._instance is None:
             cls._instance = super(DatabaseManager, cls).__new__(cls)
+            if db_path is None:
+                project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+                db_path = os.path.join(project_root, 'shop_data.db')
             cls._instance.db_path = db_path
             cls._instance.init_db()
         return cls._instance

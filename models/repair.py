@@ -21,7 +21,7 @@ class RepairModel:
             return db.execute_query(query, (status, service_charge, parts_cost, date_delivered, repair_id))
         else:
             query = """UPDATE repairs 
-                       SET status = ?, service_charge = ?, parts_cost = ? 
+                       SET status = ?, service_charge = ?, parts_cost = ?, date_delivered = NULL 
                        WHERE id = ?"""
             return db.execute_query(query, (status, service_charge, parts_cost, repair_id))
 

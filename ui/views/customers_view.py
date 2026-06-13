@@ -162,3 +162,9 @@ class CustomersView(QWidget):
             if not success:
                 QMessageBox.warning(self, "Error", "Could not delete customer. They might have active repairs or sales.")
             self.load_data()
+
+    def showEvent(self, event):
+        super().showEvent(event)
+        from PyQt5.QtCore import QTimer
+        QTimer.singleShot(10, self.load_data)
+

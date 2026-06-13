@@ -35,6 +35,7 @@ class BackupService:
 
     @staticmethod
     def restore_backup(backup_path: str) -> bool:
+        safety_backup = None
         try:
             db_path = db.db_path
             
@@ -49,6 +50,6 @@ class BackupService:
         except Exception as e:
             logging.error(f"Restore failed: {e}")
             # Try to restore safety backup
-            if os.path.exists(safety_backup):
+            if safety_backup and os.path.exists(safety_backup):
                 shutil.copy2(safety_backup, db_path)
             return False
