@@ -1,0 +1,28 @@
+# SQLite database
+shop_data.db
+
+# Backups
+backups/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Logs
+*.log
+error.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Build/Dist
+build/
+dist/
+*.spec
