@@ -1,0 +1,209 @@
+/* Nadeem Computers Official Branding Theme */
+
+/* 
+Color Palette Based on Business Card:
+- Primary Brand (Green): #8cc63f
+- Secondary Accents (Gold/Yellow): #f1c40f
+- Danger/Alert (Dark Red): #c92a2a
+- Base Backgrounds (Slate Dark): #111827
+- Surface/Cards (Lighter Slate): #1f2937
+*/
+
+QMainWindow {
+    background-color: #111827; 
+}
+
+/* Modals & Dialog Cards */
+QDialog {
+    background-color: #111827;
+}
+
+#ModalCard {
+    background-color: #1f2937;
+    border-radius: 12px;
+    border: 1px solid #374151;
+}
+
+QWidget {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #e5e7eb;
+    font-size: 14px;
+}
+
+/* ---------------- SIDEBAR NAVIGATION ---------------- */
+#Sidebar {
+    background-color: #1f2937;
+    border-right: 2px solid #374151;
+}
+
+#Sidebar QPushButton {
+    background-color: transparent;
+    color: #9ca3af;
+    border: none;
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    margin: 4px 12px;
+}
+
+#Sidebar QPushButton:hover {
+    background-color: #374151;
+    color: #f3f4f6;
+}
+
+#Sidebar QPushButton:checked {
+    background-color: #8cc63f; /* Nadeem Green */
+    color: #111827; /* Dark text for contrast */
+}
+
+/* ---------------- HEADERS ---------------- */
+#HeaderTitle {
+    font-size: 24px;
+    font-weight: 800;
+    color: #f1c40f; /* Nadeem Yellow Accent */
+    padding-bottom: 2px;
+}
+#HeaderSubtitle {
+    font-size: 14px;
+    color: #9ca3af;
+}
+
+#MainContent {
+    background-color: #111827;
+}
+
+/* ---------------- DASHBOARD CARDS ---------------- */
+.Card {
+    background-color: #1f2937;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #374151;
+}
+.CardTitle {
+    color: #d1d5db;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.CardValue {
+    color: #8cc63f; /* Nadeem Green */
+    font-size: 36px;
+    font-weight: 900;
+    margin-top: 12px;
+}
+
+/* ---------------- BUTTONS ---------------- */
+QPushButton {
+    background-color: #8cc63f; /* Nadeem Green */
+    color: #111827;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+}
+QPushButton:hover { background-color: #9cd156; }
+QPushButton:pressed { background-color: #79ac30; }
+
+/* Secondary Actions (Silver/Grey from Logo) */
+QPushButton#secondaryBtn {
+    background-color: #4b5563;
+    color: #f3f4f6;
+}
+QPushButton#secondaryBtn:hover { background-color: #6b7280; }
+
+/* Danger Actions (Red from "NADEEM" Text) */
+QPushButton#deleteBtn {
+    background-color: #c92a2a;
+    color: #ffffff;
+}
+QPushButton#deleteBtn:hover { background-color: #e03131; }
+
+/* Success Actions */
+QPushButton#checkoutBtn, QPushButton#successBtn {
+    background-color: #8cc63f;
+    color: #111827;
+    font-size: 16px;
+    padding: 15px;
+    border: 2px solid #9cd156;
+}
+QPushButton#checkoutBtn:hover { background-color: #9cd156; }
+
+/* ---------------- FORMS & INPUTS ---------------- */
+QLineEdit, QComboBox, QDateEdit, QTextEdit, QSpinBox, QDoubleSpinBox {
+    background-color: #374151;
+    color: #f3f4f6;
+    border: 1px solid #4b5563;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+QLineEdit:focus, QComboBox:focus, QDateEdit:focus, QTextEdit:focus, QSpinBox:focus, QDoubleSpinBox:focus {
+    border: 2px solid #8cc63f;
+    background-color: #1f2937;
+}
+
+QGroupBox {
+    font-weight: bold;
+    border: 1px solid #4b5563;
+    border-radius: 8px;
+    margin-top: 15px;
+    padding-top: 20px;
+    color: #9ca3af;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 5px 0 5px;
+}
+
+/* ---------------- TABLES ---------------- */
+QTableWidget {
+    background-color: #1f2937;
+    color: #f3f4f6;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    gridline-color: #374151;
+    selection-background-color: #8cc63f;
+    selection-color: #111827;
+    outline: none;
+    alternate-background-color: #111827; 
+}
+QTableWidget::item {
+    padding: 10px; 
+    border-bottom: 1px solid #374151;
+}
+QHeaderView::section {
+    background-color: #374151;
+    color: #d1d5db;
+    padding: 12px;
+    border: none;
+    border-right: 1px solid #4b5563;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+QHeaderView::section:hover {
+    background-color: #4b5563;
+}
+
+/* ---------------- SCROLLBARS ---------------- */
+QScrollBar:vertical {
+    border: none;
+    background-color: #111827;
+    width: 10px;
+    border-radius: 5px;
+}
+QScrollBar::handle:vertical {
+    background-color: #4b5563;
+    min-height: 20px;
+    border-radius: 5px;
+}
+QScrollBar::handle:vertical:hover {
+    background-color: #6b7280;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
