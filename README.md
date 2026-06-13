@@ -1,4 +1,4 @@
-# Nadeem Computers Management System
+# BillingSoft - Desktop POS & Repair Management
 
 > A modern offline desktop application for managing computer repairs, sales, inventory, customers, reports, and backups.
 
@@ -85,7 +85,7 @@ Invoices are dynamically generated as professional PDF documents using the built
 ---
 
 ## 📄 License
-This project is proprietary and developed specifically for Nadeem Computers.
+This project is proprietary and developed specifically for small business computer shops.
 
 ## 🤝 Contributing
 For bug reports or feature requests, please contact the repository owner or open an issue on GitHub.
